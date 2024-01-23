@@ -33,6 +33,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
+	/*DATA BASE 연동시 삭제*/
 	implementation "com.h2database:h2"
 }
 
