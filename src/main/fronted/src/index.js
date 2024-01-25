@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-//import App from './App';
-import reportWebVitals from './reportWebVitals';
-import MapTest from "./MapTest";
+import './styles/index.css';
+import App from './components/App';
+import reportWebVitals from './utils/reportWebVitals';
+import MapMain from "./components/MapMain";
+import Header from './components/Header';
+import MapTabArea from './components/MapTabArea';
+import MenuArea from './components/MenuArea';
+import UtilArea from './components/UtilArea';
+import Toolbar from './components/Toolbar';
 //import MapTest from "./MapTest";
 
 import { RecoilRoot } from 'recoil';
@@ -11,9 +16,12 @@ import { RecoilRoot } from 'recoil';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-  <RecoilRoot>
-    <MapTest />
-</RecoilRoot>
+    <Header />
+    <MapMain />
+    <MapTabArea />
+    <MenuArea />
+    <UtilArea />
+    <Toolbar />
   </React.StrictMode>
 );
 

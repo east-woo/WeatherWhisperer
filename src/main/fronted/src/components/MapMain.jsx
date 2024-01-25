@@ -5,7 +5,6 @@ import { Map as AllMap, View } from 'ol';
 import { fromLonLat, get as getProjection } from 'ol/proj';
 import { Tile as TileLayer } from 'ol/layer';
 import { OSM } from 'ol/source';
-import { PopupMessage } from './PopupMessage';
 
 
 const Map = () => {
@@ -39,13 +38,10 @@ const Map = () => {
     }, []);
 
 
-    const handlePopupMessage = () => {
-        setMessage("아직은 안되지롱!");
-    };
 
 
 
-    return <div id="map" style={{ height: '100rem' }}>
+    return <div id="map">
     </div>;
 }
 
