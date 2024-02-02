@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/cmm/jquery-ui.css" type="text/css"> -->
+    <link rel="stylesheet" href="/css/cmm/jquery.datetimepicker.css" type="text/css">
+    
+    <link rel="stylesheet" href="/css/cmm/ncmm.css" type="text/css">
+    <link rel="stylesheet" href="/css/nmap/nmap.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+    <script src="/js/cmm/jquery-1.12.4.js"></script>
+    <script src="/js/cmm/jquery-ui.js"></script>
+    <script src="/js/cmm/jquery.datetimepicker.full.js"></script>
+    <script src="/js/map/ui_map.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <header id="menu">
+    </header>
+
+
+    <!--지도 api 영역-->
+    <div id="map">
+        <!-- <div class="poi" style="left:700px;top:550px;">
+            <strong>관양2동</strong>
+            <p>30<span>도</span></p>
+        </div>
+
+        <div class="poi" style="left:500px;top:350px;">
+            <strong>독산동</strong>
+            <p>30<span>도</span></p>
+        </div>
+        <div class="poi" style="left:300px;top:350px;">
+            <strong>안양동</strong>
+            <p>30<span>도</span></p>
+        </div>
+        <div class="poi" style="left:400px;top:100px;">
+            <strong>구로동</strong>
+            <p>30<span>도</span></p>
+        </div>
+        <div class="poi" style="left:410px;top:250px;">
+            <strong>영등포구</strong>
+            <p>30<span>도</span></p>
+        </div> -->
+    </div>
+    <!--//지도 api 영역 -->
+
+    <div class="mapTabArea">
+        <!--tabArea-->
+        <div class="tabArea">
+            <div class="mapTab">
+                <div class="bgBox"></div>
+                <ul>
+                    <li class="left active"><span>전국</span></li>
+                    <li class="right"><span>지역별</span></li>
+                </ul>
+            </div>
+        </div>
+        <!--//tabArea-->
+        <!--srcBtn-->
+        <div class="srcBtn">
+            <button type="button" class="btnChk">
+                <input type="checkbox" id="chk" class="hidden"><label for="chk">지도를 움직이며 검색하기</label>
+            </button>
+            <button type="button" class="btnRef">이지역 검색</button>
+        </div>
+        <!--//srcBtn-->
+    </div>
+    <!--//mapTabArea-->
+
+    <!--menuArea-->
+    <div class="menuArea">
+        <!--searchArea-->
+        <div class="searchArea">
+         
+            <div class="searchBox">
+                <input type="text" placeholder="장소, 주소 또는 건물명 입력" style="width:300px;"/>
+                <button type="button" class="btnSearch"><span class="hidden">검색</span></button>
+            </div>
+
+
+        </div>
+        <!--//searchArea-->
+        <!-- 추후 작업  -->
+        <!-- <ul>
+            <li><button type="button" class="btn btnNotice"><span class="hidden">공지사항</span></button></li>
+            <li><button type="button" class="btn btnQuest"><span class="hidden">도움말</span></button></li>
+        </ul> -->
+        <button type="button" class="btn btnMenu"><span class="hidden">전체메뉴</span></button>
+    </div>
+    <!--//menuArea-->
+
+    <!--utilArea-->
+    <div class="utilArea">
+        <ul>
+            <li>
+                <button type="button" class="btn btnMenu02"><span>날씨 알람 설정</span></button>
+            </li>
+            <!-- <li>
+                <button type="button" class="btn btnMenu05"><span>보상사업관리</span></button>
+            </li>
+            <li>
+                <button type="button" class="btn btnMenu06"><span>시스템관리</span></button>
+            </li> -->
+        </ul>
+    </div>
+    <!--//utilArea-->
+
+    <!--toolbar-->
+    <div class="toolbar">
+        <button type="button" class="btn btnCurrent"><span class="hidden">현위치</span></button>
+        <!-- <button type="button" class="btn btnFavorite"><span class="hidden">즐겨찾기</span></button> -->
+        <button type="button" class="btn btnMapType"><span class="hidden">지도타입</span></button>
+        <!--scale-->
+        <div class="scale">
+            <button type="button" class="btnScaleUp"><span class="hidden">확대</span></button>
+            <button type="button" class="btnScaleDown"><span class="hidden">축소</span></button>
+        </div>
+        <!--//scale-->
+        <!--btnTool-->
+        <!-- <div class="btnTool">
+            <!-- <button type="button" class="btn btnReset"><span>초기화</span></button> -->
+        <!-- <button type="button" class="btn btnDraw"><span>그리기</span></button> -->
+        <!-- <button type="button" class="btn btnRuler"><span>측정</span></button> -->
+        <!-- <button type="button" class="btn btnIndex"><span>인덱스맵</span></button> -->
+    </div> -->
+    <!--//btnTool-->
+</div>
+<!--//toolbar-->
+
+
+<!--//toc-->
+<!--//toc-->
+<!--
+<div id="dimmed"></div>
+-->
+<!--noticePop-->
+<div class="noticePop" style="display: none;">
+    <div class="cont">
+        <p>공지사항 레이어팝업</p>
+    </div>
+    <div class="btnArea close">
+        <button type="button" class="cookieToday"><span>오늘하루보지않기</span></button>
+        <button type="button" class="close"><span>닫기</span></button>
+    </div>
+</div>
+<!--//noticePop-->
+<div class="alert ui-draggable ui-draggable-handle" style="display: none; left:calc(50% - 195px);top:200px;">
+    <!--popHead-->
+    <div class="popHead">
+        <span class="hdTitle"> </span>
+        <button type="button" class="btnClose"><span class="hidden">닫기</span></button>
+    </div>
+    <!--//popHead-->
+    <!--popCont-->
+    <div class="popCont">
+        <!--popPd-->
+        <div class="popPd wide">
+            <div class="popInner">
+                <div class="imgBox question"></div>
+                <p>해당지역에 날씨 알림을 받으시겠습니까?</p>
+                <span class="blue">!!!!</span>
+
+                <div class="btnArea">
+                    <button type="button" class="gray">취소</button>
+                    <button type="button" class="blue">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script src="/js/map.js"></script>
+</html>
