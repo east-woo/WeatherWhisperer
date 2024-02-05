@@ -49,6 +49,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+/*
+(빌드 속도 개선을 위한 잠시 주석)
 
 // 프론트 빌드
 
@@ -91,4 +93,4 @@ task copyReactBuildFiles(type: Copy) {
 	dependsOn "buildReact"
 	from "$frontendDir/build"
 	into "$projectDir/src/main/resources/static"
-}
+}*/

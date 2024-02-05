@@ -1,0 +1,13 @@
+server:
+  port: 9090
+
+
+spring:
+  profiles:
+    include: API-KEY
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+    url: jdbc:postgresql://localhost:5432/WEATHER_WHISPERER
+    username: postgres
+    password: postgres
