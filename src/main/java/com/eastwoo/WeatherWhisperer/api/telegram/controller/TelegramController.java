@@ -3,9 +3,12 @@ package com.eastwoo.WeatherWhisperer.api.telegram.controller;
 import com.eastwoo.WeatherWhisperer.api.telegram.model.TelegramBotInfo;
 import com.eastwoo.WeatherWhisperer.api.telegram.service.TelegramBotInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Please explain the class!!
@@ -21,7 +24,12 @@ public class TelegramController {
 
     @PostMapping("/save-bot-info")
     public TelegramBotInfo saveBotInfo(@RequestBody TelegramBotInfo botInfo) {
-        System.out.println(botInfo.toString());
+
         return botInfoService.saveTelegramBotInfo(botInfo);
+    }
+    @GetMapping("/bot-info")
+    public List<TelegramBotInfo> getBotInfo() {
+        System.out.println("Test");
+        return botInfoService.getTelegramBotInfo();
     }
 }

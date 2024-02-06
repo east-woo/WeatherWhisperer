@@ -5,6 +5,8 @@ import com.eastwoo.WeatherWhisperer.api.telegram.repository.TelegramBotInfoRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Please explain the class!!
  *
@@ -20,6 +22,11 @@ public class TelegramBotInfoService {
     public TelegramBotInfo saveTelegramBotInfo(TelegramBotInfo botInfo) {
         return repository.save(botInfo);
     }
+
+    public List<TelegramBotInfo> getTelegramBotInfo() {
+        return repository.findAll();
+    }
+
 
     // Other service methods as needed
 }

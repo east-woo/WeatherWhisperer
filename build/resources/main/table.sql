@@ -32,3 +32,9 @@ CREATE TABLE weather_data (
                               condition VARCHAR(50) NOT NULL,
                               observation_time TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
+
+
+CREATE TABLE public.telegram_bot_info (
+                                          bot_token varchar NOT NULL,
+                                          chat_id int8 NOT NULL
+);
