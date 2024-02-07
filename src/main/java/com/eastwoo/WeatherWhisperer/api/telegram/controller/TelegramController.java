@@ -18,7 +18,7 @@ import java.util.List;
  * @since : 2024-02-05
  */
 @RestController
-public class TelegramController {
+public class TelegramController  {
     @Autowired
     private TelegramBotInfoService botInfoService;
 
@@ -32,4 +32,5 @@ public class TelegramController {
         System.out.println("Test");
         return botInfoService.getTelegramBotInfo();
     }
+
 }
