@@ -242,3 +242,7 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/windows,intellij,intellij+all,git,java
 
 /src/main/resources/application-API-KEY.yml
+
+### Front
+.vscode
+# front/node_modules
