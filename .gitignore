@@ -277,4 +277,4 @@ gradle-app.setting
 
 ### Front
 .vscode
-# front/node_modules
+front/node_modules
