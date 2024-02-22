@@ -1,7 +1,7 @@
 // App.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './Header';
-import Map from './Map';
+import MapMain from './MapMain';
 import MapTabArea from './MapTabArea';
 import MenuArea from './MenuArea';
 import UtilArea from './UtilArea';
@@ -11,7 +11,7 @@ const App = () => {
     return (
         <div>
             <Header />
-            <Map />
+            <MapMain />
             <MapTabArea />
             <MenuArea />
             <UtilArea />
