@@ -30,6 +30,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 
+	/* 로컬 개발용 db ssh tunneling */
+	// https://mavenlibs.com/maven/dependency/com.jcraft/jsch
+	implementation 'com.jcraft:jsch:0.1.55'
 
 	// postgreSQL
 	implementation 'org.postgresql:postgresql:42.5.0'
