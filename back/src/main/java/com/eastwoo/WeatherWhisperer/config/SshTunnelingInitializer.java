@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.Properties;
 
 @Slf4j
-@Profile("prod")
+@Profile("dev")
 @Component
 @ConfigurationProperties(prefix = "ssh")
 @Validated
@@ -67,7 +67,6 @@ public class SshTunnelingInitializer {
 
         } catch (JSchException e){
             this.closeSSH();
-            e.printStackTrace();
             log.error("fail to make ssh tunneling : {}", e.getMessage());
         }
 

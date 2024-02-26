@@ -2,12 +2,7 @@ server:
   port: 9090
 
 
+
 spring:
   profiles:
     include: API-KEY
-  datasource:
-    hikari:
-      maximum-pool-size: 4
-    url: {dbinfo}
-    username: {username}
-    password: {password}
