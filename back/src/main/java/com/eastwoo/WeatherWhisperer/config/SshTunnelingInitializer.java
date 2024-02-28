@@ -27,6 +27,7 @@ public class SshTunnelingInitializer {
     private int sshPort;
     private String privateKey;
     private int databasePort;
+    private String databaseEndpoint;
 
     private Session session;
 
@@ -49,7 +50,6 @@ public class SshTunnelingInitializer {
             log.info("creating ssh session");
 
             jSch.addIdentity(privateKey);  // 개인키
-
             session = jSch.getSession(user, host, sshPort);  // 세션 설정
             Properties config = new Properties();
             config.put("StrictHostKeyChecking", "no");
@@ -62,11 +62,14 @@ public class SshTunnelingInitializer {
 
             // 로컬pc의 남는 포트 하나와 원격 접속한 pc의 db포트 연결
             log.info("start forwarding");
-            forwardedPort = session.setPortForwardingL(33306, "localhost", databasePort);
+            forwardedPort = session.setPortForwardingL(0, databaseEndpoint, databasePort);
+            System.out.println(forwardedPort);
             log.info("successfully connected to database");
 
         } catch (JSchException e){
             this.closeSSH();
+            e.printStackTrace();
+            System.out.println(e);
             log.error("fail to make ssh tunneling : {}", e.getMessage());
         }
 

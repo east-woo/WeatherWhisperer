@@ -30,12 +30,17 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	//implementation 'org.springframework.session:spring-session-jdbc'
+
 	/* 로컬 개발용 db ssh tunneling */
 	// https://mavenlibs.com/maven/dependency/com.jcraft/jsch
-	implementation 'com.jcraft:jsch:0.1.55'
+	//implementation 'com.jcraft:jsch:0.1.55'
+	implementation 'com.github.mwiede:jsch:0.2.16'
 
 	// postgreSQL
-	implementation 'org.postgresql:postgresql:42.5.0'
+	implementation 'org.postgresql:postgresql:42.6.0'
 
 	// log4jdbc-log4j2
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
@@ -47,7 +52,7 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 
 	/*DATA BASE 연동시 삭제*/
-	implementation "com.h2database:h2"
+	//implementation "com.h2database:h2"
 }
 
 tasks.named('test') {

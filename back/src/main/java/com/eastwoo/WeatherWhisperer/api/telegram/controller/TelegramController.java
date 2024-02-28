@@ -29,7 +29,8 @@ public class TelegramController  {
     }
     @GetMapping("/bot-info")
     public List<TelegramBotInfo> getBotInfo() {
-        System.out.println("Test");
+        System.out.println(botInfoService.getTelegramBotInfo());
+
         return botInfoService.getTelegramBotInfo();
     }
 
