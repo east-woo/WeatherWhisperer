@@ -16,8 +16,13 @@ import java.util.List;
  */
 @Service
 public class TelegramBotInfoService {
+
+    private final TelegramBotInfoRepository repository;
+
     @Autowired
-    private TelegramBotInfoRepository repository;
+    public TelegramBotInfoService(TelegramBotInfoRepository repository) {
+        this.repository = repository;
+    }
 
     public TelegramBotInfo saveTelegramBotInfo(TelegramBotInfo botInfo) {
         return repository.save(botInfo);
