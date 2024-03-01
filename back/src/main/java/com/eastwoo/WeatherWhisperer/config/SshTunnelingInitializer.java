@@ -12,6 +12,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 
+import java.io.File;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 @Slf4j
@@ -36,10 +41,38 @@ public class SshTunnelingInitializer {
         if (session != null && session.isConnected())
             session.disconnect();
     }
+    private static void searchFile(File directory, String fileName, List<String> filePaths) {
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    searchFile(file, fileName, filePaths);
+                } else if (file.getName().equals(fileName)) {
+                    filePaths.add(file.getAbsolutePath());
+                }
+            }
+        }
+    }
 
     public Integer buildSshConnection() {
 
         Integer forwardedPort = null;
+
+        String projectDir = System.getProperty("user.dir");
+        String targetDirName = "WeatherWhisperer_private"; // 찾고자 하는 폴더 이름
+        String fileName = privateKey;
+        String absoluteFilePath = null;
+        List<String> filePaths = new ArrayList<>();
+        searchFile(new File(projectDir + File.separator + targetDirName), fileName, filePaths);
+
+        if (filePaths.isEmpty()) {
+            log.info("프로젝트 내 " + targetDirName + " 폴더 안에서 파일을 찾을 수 없습니다.");
+        } else {
+            log.info("프로젝트 내 " + targetDirName + " 폴더 안에서 찾은 파일 경로:");
+            for (String filePath : filePaths) {
+                absoluteFilePath = filePath;
+            }
+        }
 
         try {
             log.info("{}@{}:{}:{} with privateKey",user, host, sshPort, databasePort);
@@ -49,7 +82,7 @@ public class SshTunnelingInitializer {
 
             log.info("creating ssh session");
 
-            jSch.addIdentity(privateKey);  // 개인키
+            jSch.addIdentity(absoluteFilePath);  // 개인키
             session = jSch.getSession(user, host, sshPort);  // 세션 설정
             Properties config = new Properties();
             config.put("StrictHostKeyChecking", "no");
