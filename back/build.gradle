@@ -55,6 +55,15 @@ dependencies {
 	//implementation "com.h2database:h2"
 }
 
+task copyPrivate(type: Copy) {
+	copy {
+		from './WeatherWhisperer_private/profiles'
+		include "*.yml"
+		into 'src/main/resources'
+	}
+}
+
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
