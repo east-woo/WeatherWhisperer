@@ -279,3 +279,6 @@ gradle-app.setting
 ### Front
 .vscode
 front/node_modules
+
+back/src/main/resources/application-API-KEY.yml
+back/src/main/resources/application-dev.yml
