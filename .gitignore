@@ -282,3 +282,6 @@ front/node_modules
 
 back/src/main/resources/application-API-KEY.yml
 back/src/main/resources/application-dev.yml
+
+back/WeatherWhisperer_private/profiles/application-API-KEY.yml
+back/WeatherWhisperer_private/profiles/application-dev.yml
