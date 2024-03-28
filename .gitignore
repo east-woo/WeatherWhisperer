@@ -285,3 +285,5 @@ back/src/main/resources/application-dev.yml
 
 back/WeatherWhisperer_private/profiles/application-API-KEY.yml
 back/WeatherWhisperer_private/profiles/application-dev.yml
+
+back/src/main/resources/ssh/dongwoo-ec2.pem
