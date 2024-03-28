@@ -2,6 +2,7 @@ package com.eastwoo.WeatherWhisperer.api.telegram.service;
 
 import com.eastwoo.WeatherWhisperer.api.telegram.model.TelegramBotInfo;
 import com.eastwoo.WeatherWhisperer.api.telegram.repository.TelegramBotInfoRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +16,10 @@ import java.util.List;
  * @since : 2024-02-05
  */
 @Service
+@RequiredArgsConstructor
 public class TelegramBotInfoService {
 
     private final TelegramBotInfoRepository repository;
-
-    @Autowired
-    public TelegramBotInfoService(TelegramBotInfoRepository repository) {
-        this.repository = repository;
-    }
 
     public TelegramBotInfo saveTelegramBotInfo(TelegramBotInfo botInfo) {
         return repository.save(botInfo);
