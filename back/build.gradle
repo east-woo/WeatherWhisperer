@@ -51,8 +51,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
-	/*DATA BASE 연동시 삭제*/
-	//implementation "com.h2database:h2"
+	/*swagger*/
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 }
 
 task copyPrivate(type: Copy) {
