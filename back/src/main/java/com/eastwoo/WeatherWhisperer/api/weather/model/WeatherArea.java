@@ -16,15 +16,14 @@ import jakarta.persistence.Table;
 @Table(name = "tb_weather_area")
 public class WeatherArea {
     @Id
+    @Column(name = "admdst_cd", nullable = false)
+    private String admdstCd;
+
     @Column(name = "grid_x")
     private String gridX;
 
-    @Id
     @Column(name = "grid_y")
     private String gridY;
-
-    @Column(name = "admdst_cd", nullable = false)
-    private String admdstCd;
 
     @Column(name = "stdg_ctpv", nullable = false)
     private String stdgCtpv;
