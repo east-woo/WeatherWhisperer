@@ -63,6 +63,14 @@ task copyPrivate(type: Copy) {
 	}
 }
 
+task copyPem(type: Copy) {
+	copy {
+		from './WeatherWhisperer_private/pem'
+		include "*.pem"
+		into 'src/main/resources/ssh'
+	}
+}
+
 
 tasks.named('test') {
 	useJUnitPlatform()

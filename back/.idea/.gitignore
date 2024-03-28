@@ -8,3 +8,5 @@
 /dataSources.local.xml
 
 /modules/WeatherWhisperer.main.iml
+
+../src/main/resources/ssh/dongwoo-ec2.pem
