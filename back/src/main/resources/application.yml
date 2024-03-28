@@ -1,14 +1,11 @@
 server:
   port: 9090
 
-
-
 spring:
   config:
     import:
-      - "file:C:/Users/dongwoo/Desktop/WeatherWhisperer/back/WeatherWhisperer_private/profiles/application-API-KEY.yml"
-      - "file:C:/Users/dongwoo/Desktop/WeatherWhisperer/back/WeatherWhisperer_private/profiles/application-dev.yml"
-
+      - classpath:application-dev.yml
+      - classpath:application-API-KEY.yml
 
   profiles:
     active: dev
