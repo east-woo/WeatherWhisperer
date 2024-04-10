@@ -37,6 +37,7 @@ dependencies {
 	/* 로컬 개발용 db ssh tunneling */
 	// https://mavenlibs.com/maven/dependency/com.jcraft/jsch
 	//implementation 'com.jcraft:jsch:0.1.55'
+	// SSH 통신
 	implementation 'com.github.mwiede:jsch:0.2.16'
 
 	// postgreSQL
@@ -53,6 +54,12 @@ dependencies {
 
 	/*swagger*/
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+
+	/*Query DSL*/
+	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+	annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
+	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 }
 
 task copyPrivate(type: Copy) {
