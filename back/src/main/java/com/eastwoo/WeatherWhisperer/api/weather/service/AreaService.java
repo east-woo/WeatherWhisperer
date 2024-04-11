@@ -20,6 +20,7 @@ public class AreaService {
     private final AreaRepository areaRepository;
 
     private List<WeatherArea> getStdgCtpvNmList(){
+
         return areaRepository.findAll();
     }
 }

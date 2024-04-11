@@ -2,6 +2,7 @@ package com.eastwoo.WeatherWhisperer.api.weather.repository;
 
 import com.eastwoo.WeatherWhisperer.api.weather.model.WeatherArea;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 /**
  * Please explain the class!!
@@ -10,5 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @fileName : AreaRepository
  * @since : 2024-03-28
  */
-public interface AreaRepository extends JpaRepository<WeatherArea, String> {
+public interface AreaRepository extends JpaRepository<WeatherArea, String>, QuerydslPredicateExecutor<WeatherArea> {
 }
