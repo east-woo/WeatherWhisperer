@@ -11,5 +11,5 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
  * @fileName : AreaRepository
  * @since : 2024-03-28
  */
-public interface AreaRepository extends JpaRepository<WeatherArea, String>, QuerydslPredicateExecutor<WeatherArea> {
+public interface AreaRepository extends JpaRepository<WeatherArea, String> {
 }
