@@ -1,6 +1,6 @@
 package com.eastwoo.WeatherWhisperer.api.telegram.controller;
 
-import com.eastwoo.WeatherWhisperer.api.telegram.model.TelegramBotInfo;
+import com.eastwoo.WeatherWhisperer.api.telegram.entity.TelegramBotInfo;
 import com.eastwoo.WeatherWhisperer.api.telegram.service.TelegramBotInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

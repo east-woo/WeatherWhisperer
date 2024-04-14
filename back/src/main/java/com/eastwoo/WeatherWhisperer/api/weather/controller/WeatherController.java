@@ -1,10 +1,8 @@
 package com.eastwoo.WeatherWhisperer.api.weather.controller;
 
-import com.eastwoo.WeatherWhisperer.api.telegram.model.TelegramBotInfo;
-import com.eastwoo.WeatherWhisperer.api.weather.dto.WeatherResult;
+import com.eastwoo.WeatherWhisperer.api.weather.model.WeatherResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Please explain the class!!

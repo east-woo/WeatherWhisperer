@@ -1,4 +1,4 @@
-package com.eastwoo.WeatherWhisperer.api.weather.model;
+package com.eastwoo.WeatherWhisperer.api.weather.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

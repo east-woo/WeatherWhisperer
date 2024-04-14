@@ -1,4 +1,4 @@
-package com.eastwoo.WeatherWhisperer.api.weather.dto;
+package com.eastwoo.WeatherWhisperer.api.weather.model;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;

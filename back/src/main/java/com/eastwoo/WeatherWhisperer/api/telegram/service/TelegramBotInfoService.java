@@ -1,9 +1,8 @@
 package com.eastwoo.WeatherWhisperer.api.telegram.service;
 
-import com.eastwoo.WeatherWhisperer.api.telegram.model.TelegramBotInfo;
+import com.eastwoo.WeatherWhisperer.api.telegram.entity.TelegramBotInfo;
 import com.eastwoo.WeatherWhisperer.api.telegram.repository.TelegramBotInfoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

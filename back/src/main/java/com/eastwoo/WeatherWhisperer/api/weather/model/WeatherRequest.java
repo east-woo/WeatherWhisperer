@@ -1,4 +1,4 @@
-package com.eastwoo.WeatherWhisperer.api.weather.dto;
+package com.eastwoo.WeatherWhisperer.api.weather.model;
 
 /**
  * Please explain the class!!
