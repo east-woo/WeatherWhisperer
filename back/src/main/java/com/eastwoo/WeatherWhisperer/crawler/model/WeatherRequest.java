@@ -1,4 +1,8 @@
-package com.eastwoo.WeatherWhisperer.api.weather.model;
+package com.eastwoo.WeatherWhisperer.crawler.model;
+
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * Please explain the class!!
@@ -7,6 +11,7 @@ package com.eastwoo.WeatherWhisperer.api.weather.model;
  * @fileName : WeatherRequest
  * @since : 2024-03-28
  */
+@Getter
 public class WeatherRequest {
 
     public String serviceKey;
@@ -14,7 +19,7 @@ public class WeatherRequest {
     public int pageNo = 1;
 
     //한 페이지 결과 수
-    public int numOfRows;
+    public int numOfRows = 10000;
 
     // 응답 자료 형식
     public String dataType = "json";

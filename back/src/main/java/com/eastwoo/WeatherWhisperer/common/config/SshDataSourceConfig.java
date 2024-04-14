@@ -1,4 +1,4 @@
-package com.eastwoo.WeatherWhisperer.config;
+package com.eastwoo.WeatherWhisperer.common.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.eastwoo.WeatherWhisperer.config;
+package com.eastwoo.WeatherWhisperer.common.config;
 
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;

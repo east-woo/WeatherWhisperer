@@ -1,4 +1,4 @@
-package com.eastwoo.WeatherWhisperer.config;
+package com.eastwoo.WeatherWhisperer.common.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
