@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
  * @since : 2024-03-28
  */
 @Getter
+@ToString
 @Builder
 public class WeatherRequest {
 
