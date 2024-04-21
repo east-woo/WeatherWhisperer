@@ -14,7 +14,6 @@ import org.springframework.web.util.UriBuilder;
 import reactor.core.publisher.Mono;
 
 @SpringBootTest
-
 public class WeatherWhispererApplicationTests {
 
 	@Autowired
@@ -28,7 +27,7 @@ public class WeatherWhispererApplicationTests {
 
 	@Test
 	public void requestExternalApi() {
-		String date = "20240419";
+		String date = "20240421";
 		String time = "0500";
 		int nx = 55;
 		int ny = 127;
@@ -40,24 +39,17 @@ public class WeatherWhispererApplicationTests {
 				.ny(ny)
 				.build();
 
-		System.out.println(request.toString());
+		System.out.println("request: " + request);
 
-		// Create a DefaultUriBuilderFactory with encoding mode
-		DefaultUriBuilderFactory factory = new DefaultUriBuilderFactory();
-		factory.setEncodingMode(DefaultUriBuilderFactory.EncodingMode.NONE); // Set encoding mode to NONE or VALUES_ONLY
 
-		WebClient webClient = WebClient.builder()
-				.uriBuilderFactory(factory) // Set the custom UriBuilderFactory
-				.baseUrl("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0")
-				.build();
 
-//		WebClient webClient = webClientBuilder.baseUrl("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0").build();
+		WebClient webClient = webClientBuilder.baseUrl("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0").build();
+
 		String path = "/getVilageFcst";
 		webClient.get()
 				.uri(uriBuilder ->
 						uriBuilder.path(path)
 						.queryParam("serviceKey", request.getServiceKey())
-						.queryParam("dataType", request.getDataType())
 						.queryParam("base_date", request.getBaseDate())
 						.queryParam("base_time", request.getBaseTime())
 						.queryParam("nx", request.getNx())

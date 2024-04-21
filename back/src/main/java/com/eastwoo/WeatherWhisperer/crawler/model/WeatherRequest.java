@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
  */
 @Getter
 @ToString
-@Builder
 public class WeatherRequest {
 
     private final String serviceKey;
@@ -58,7 +57,7 @@ public class WeatherRequest {
         private String serviceKey;
         private int pageNo = 1;
         private int numOfRows = 10000;
-        private String dataType = "json";
+        private String dataType = "JSON";
         private String baseDate;
         private String baseTime;
         private int nx;
