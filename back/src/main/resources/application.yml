@@ -2,10 +2,13 @@ server:
   port: 9090
 
 spring:
+  jpa:
+    open-in-view: false
   config:
     import:
       - classpath:application-dev.yml
       - classpath:application-API-KEY.yml
-
+  thymeleaf:
+    check-template-location: false
   profiles:
     active: dev
