@@ -16,8 +16,7 @@ import reactor.core.publisher.Mono;
 @SpringBootTest
 public class WeatherWhispererApplicationTests {
 
-	@Autowired
-	private WebClient.Builder webClientBuilder;
+
 
 	@Value("${api-key.datagokr-api-key}")
 	private String datagokrApiKey;
@@ -27,6 +26,7 @@ public class WeatherWhispererApplicationTests {
 
 	@Test
 	public void requestExternalApi() {
+		String baseUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0";
 		String date = "20240421";
 		String time = "0500";
 		int nx = 55;
@@ -39,11 +39,12 @@ public class WeatherWhispererApplicationTests {
 				.ny(ny)
 				.build();
 
-		System.out.println("request: " + request);
+
+		DefaultUriBuilderFactory factory = new DefaultUriBuilderFactory(baseUrl);
+		factory.setEncodingMode(DefaultUriBuilderFactory.EncodingMode.VALUES_ONLY);
 
 
-
-		WebClient webClient = webClientBuilder.baseUrl("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0").build();
+		WebClient webClient = WebClient.builder().uriBuilderFactory(factory).baseUrl(baseUrl).build();
 
 		String path = "/getVilageFcst";
 		webClient.get()
