@@ -1,181 +1,148 @@
 buildscript {
 	ext {
-		queryDslVersion = "5.0.0"
+		springBootVersion = '3.2.1'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+		classpath "io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE"
 	}
 }
 
-plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.2.1'
-	id 'io.spring.dependency-management' version '1.1.4'
-	// querydsl관련 명령어를 gradle탭에 생성해준다. (권장사항)
-	//id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
-}
+// 하위 모든 프로젝트 공통 세팅
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
 
-group = 'com.eastwoo'
-version = '0.0.1-SNAPSHOT'
+	group 'org.eastwoo'
+	version '1.0-SNAPSHOT'
 
-java {
 	sourceCompatibility = '17'
-}
+	targetCompatibility = '17'
+	compileJava.options.encoding = 'UTF-8'
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
+	repositories {
+		mavenCentral()
+	}
+
+	// 하위 모듈에서 공통으로 사용하는 세팅 추가
+	dependencies {
+		compileOnly 'org.projectlombok:lombok'
+
+		annotationProcessor 'org.projectlombok:lombok'
+		annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+		testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+		testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+	}
+
+	test {
+		useJUnitPlatform()
 	}
 }
 
-repositories {
-	mavenCentral()
-}
+project(':weather-common') {
+	// 공통 코드
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-devtools'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	bootJar { enabled = false } // core 은 bootJar 로 패키징 할 필요 없음
+	jar { enabled = true }
 
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	//implementation 'org.springframework.session:spring-session-jdbc'
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		implementation 'org.springframework.boot:spring-boot-devtools'
+		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+		implementation 'org.springframework.boot:spring-boot-starter-security'
+		implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+		implementation 'org.springframework.boot:spring-boot-starter-validation'
+		implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 
-	/* 로컬 개발용 db ssh tunneling */
-	// https://mavenlibs.com/maven/dependency/com.jcraft/jsch
-	//implementation 'com.jcraft:jsch:0.1.55'
-	// SSH 통신
-	implementation 'com.github.mwiede:jsch:0.2.16'
+		implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+		implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+		//implementation 'org.springframework.session:spring-session-jdbc'
 
-	// postgreSQL
-	implementation 'org.postgresql:postgresql:42.6.0'
+		/* 로컬 개발용 db ssh tunneling */
+		// https://mavenlibs.com/maven/dependency/com.jcraft/jsch
+		//implementation 'com.jcraft:jsch:0.1.55'
+		// SSH 통신
+		implementation 'com.github.mwiede:jsch:0.2.16'
 
-	// log4jdbc-log4j2
-	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+		// postgreSQL
+		implementation 'org.postgresql:postgresql:42.6.0'
 
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+		// log4jdbc-log4j2
+		implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
 
-	/*swagger*/
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+		testImplementation 'org.springframework.security:spring-security-test'
 
-	/*Query DSL(spring booy 3.x 이상)*/
-	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
-	annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
-	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
-	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+		/*swagger*/
+		implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-}
-
-task copyPrivate(type: Copy) {
-	copy {
-		from './WeatherWhisperer_private/profiles'
-		include "*.yml"
-		into 'src/main/resources'
+		/*Query DSL*/
+		/*Query DSL(spring booy 3.x 이상)*/
+		implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+		annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
+		annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+		annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 	}
-}
-
-task copyPem(type: Copy) {
-	copy {
-		from './WeatherWhisperer_private/pem'
-		include "*.pem"
-		into 'src/main/resources/ssh'
-	}
-}
-
-
-tasks.named('test') {
-	useJUnitPlatform()
-}
-
-//querydsl 추가 시작
-/*def querydslDir = "$buildDir/generated/querydsl"
-
-querydsl {
-	jpa = true
-	querydslSourcesDir = querydslDir
-}
-
-
-sourceSets {
-	main.java.srcDir querydslDir
-}
-
-configurations {
-	querydsl.extendsFrom compileClasspath
-}
-
-compileQuerydsl{
-	options.annotationProcessorPath = configurations.querydsl
-}
-
-// gradle clean 시에 QClass 디렉토리 삭제
-clean {
-	delete file(querydslDir)
-}*/
-
-def querydslDir = "$buildDir/generated/querydsl"
-
-sourceSets {
-	main.java.srcDirs += [ querydslDir ]
-}
-
-tasks.withType(JavaCompile) {
-	options.annotationProcessorGeneratedSourcesDirectory = file(querydslDir)
-}
-
-clean.doLast {
-	file(querydslDir).deleteDir()
-}
-
-
-/*
-(빌드 속도 개선을 위한 잠시 주석)
-
-// 프론트 빌드
-
-def frontendDir = "$projectDir/src/main/fronted"
-
-sourceSets {
-	main {
-		resources { srcDirs = ["$projectDir/src/main/resources"]
+	task copyPrivate(type: Copy) {
+		copy {
+			from './WeatherWhisperer_private/profiles'
+			include "*.yml"
+			into 'src/main/resources'
 		}
 	}
-}
 
-processResources { dependsOn "copyReactBuildFiles" }
+	task copyPem(type: Copy) {
+		copy {
+			from './WeatherWhisperer_private/pem'
+			include "*.pem"
+			into 'src/main/resources/ssh'
+		}
+	}
 
-task installReact(type: Exec) {
-	workingDir "$frontendDir"
-	inputs.dir "$frontendDir"
-	group = BasePlugin.BUILD_GROUP
-	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-		commandLine "npm.cmd", "audit", "fix"
-		commandLine 'npm.cmd', 'install' }
-	else {
-		commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
+
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
+
+
+	def querydslDir = "$buildDir/generated/querydsl"
+
+	sourceSets {
+		main.java.srcDirs += [ querydslDir ]
+	}
+
+	tasks.withType(JavaCompile) {
+		options.annotationProcessorGeneratedSourcesDirectory = file(querydslDir)
+	}
+
+	clean.doLast {
+		file(querydslDir).deleteDir()
 	}
 }
 
-task buildReact(type: Exec) {
-	dependsOn "installReact"
-	workingDir "$frontendDir"
-	inputs.dir "$frontendDir"
-	group = BasePlugin.BUILD_GROUP
-	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-		commandLine "npm.cmd", "run-script", "build"
-	} else {
-		commandLine "npm", "run-script", "build"
+project(':weather-api') {
+	bootJar { enabled = true }
+	jar { enabled = false }
+
+	dependencies {
+		implementation project(':weather-common') // 컴파일 시 velog-core project 로딩
 	}
 }
 
-task copyReactBuildFiles(type: Copy) {
-	dependsOn "buildReact"
-	from "$frontendDir/build"
-	into "$projectDir/src/main/resources/static"
-}*/
+project(':weather-batch') {
+	bootJar { enabled = true }
+	jar { enabled = false }
+
+	dependencies {
+		implementation project(':weather-common') // 컴파일 시 velog-core project 로딩
+	}
+}
