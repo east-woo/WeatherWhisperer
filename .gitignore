@@ -280,10 +280,8 @@ gradle-app.setting
 .vscode
 front/node_modules
 
-back/src/main/resources/application-API-KEY.yml
-back/src/main/resources/application-dev.yml
 
-back/WeatherWhisperer_private/profiles/application-API-KEY.yml
-back/WeatherWhisperer_private/profiles/application-dev.yml
+back/weather-common/src/main/resources/ssh/dongwoo-ec2.pem
 
-back/src/main/resources/ssh/dongwoo-ec2.pem
+back/weather-common/src/main/resources/application-API-KEY.yml
+back/weather-common/src/main/resources/application-dev.yml
