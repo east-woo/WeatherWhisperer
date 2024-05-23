@@ -1,8 +1,11 @@
 package com.eastwoo.api.weather.controller;
 
-import com.eastwoo.WeatherWhisperer.api.weather.model.WeatherResult;
+
+import com.eastwoo.api.weather.model.WeatherResult;
+import com.eastwoo.api.weather.service.WeatherService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -24,6 +27,10 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api/weather")
 public class WeatherController {
+
+    @Autowired
+    WeatherService weatherService;
+
 
     /*날씨 조회하는 API ()*/
     @GetMapping("/getVilageFcst")

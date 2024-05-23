@@ -2,5 +2,3 @@ rootProject.name = 'WeatherWhisperer'
 include 'weather-api'
 include 'weather-batch'
 include 'weather-common'
-
-

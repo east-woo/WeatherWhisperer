@@ -1,6 +1,7 @@
 package com.eastwoo.api.telegram.repository;
 
-import com.eastwoo.WeatherWhisperer.api.telegram.entity.TelegramBotInfo;
+
+import com.eastwoo.api.telegram.entity.TelegramBotInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

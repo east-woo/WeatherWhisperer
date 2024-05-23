@@ -1,6 +1,13 @@
 package com.eastwoo;
 
-import com.eastwoo.WeatherWhisperer.crawler.model.WeatherRequest;
+/**
+ * Please explain the class!!
+ *
+ * @author : dongwoo
+ * @fileName : Application
+ * @since : 2024-05-15
+ */
+import com.eastwoo.dto.WeatherRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

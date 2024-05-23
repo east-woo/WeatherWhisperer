@@ -38,6 +38,7 @@ subprojects {
 
 		testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
 		testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
 	}
 
 	test {
@@ -51,7 +52,38 @@ project(':weather-common') {
 	bootJar { enabled = false } // core 은 bootJar 로 패키징 할 필요 없음
 	jar { enabled = true }
 
+	/*
+	task copyPem(type: Copy) {
+		copy {
+			from '../WeatherWhisperer_private/pem'
+			include "*.pem"
+			into 'src/main/resources/ssh'
+		}
+	}
+	*/
+
+	task copyPrivate(type: Copy) {
+		copy {
+			from '../WeatherWhisperer_private/profiles'
+			include "*.yml"
+			into 'src/main/resources'
+		}
+	}
+
+
+
 	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		implementation 'com.github.mwiede:jsch:0.2.16'
+	}
+}
+
+project(':weather-api') {
+	bootJar { enabled = true }
+	jar { enabled = false }
+
+	dependencies {
+		implementation project(':weather-common') // 컴파일 시 velog-core project 로딩
 		implementation 'org.springframework.boot:spring-boot-starter-web'
 		implementation 'org.springframework.boot:spring-boot-devtools'
 		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -67,6 +99,7 @@ project(':weather-common') {
 		/* 로컬 개발용 db ssh tunneling */
 		// https://mavenlibs.com/maven/dependency/com.jcraft/jsch
 		//implementation 'com.jcraft:jsch:0.1.55'
+
 		// SSH 통신
 		implementation 'com.github.mwiede:jsch:0.2.16'
 
@@ -91,26 +124,8 @@ project(':weather-common') {
 		annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
 		annotationProcessor "jakarta.annotation:jakarta.annotation-api"
 		annotationProcessor "jakarta.persistence:jakarta.persistence-api"
-	}
-	task copyPrivate(type: Copy) {
-		copy {
-			from './WeatherWhisperer_private/profiles'
-			include "*.yml"
-			into 'src/main/resources'
-		}
-	}
 
-	task copyPem(type: Copy) {
-		copy {
-			from './WeatherWhisperer_private/pem'
-			include "*.pem"
-			into 'src/main/resources/ssh'
-		}
-	}
-
-
-	tasks.named('test') {
-		useJUnitPlatform()
+		implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	}
 
 
@@ -129,15 +144,6 @@ project(':weather-common') {
 	}
 }
 
-project(':weather-api') {
-	bootJar { enabled = true }
-	jar { enabled = false }
-
-	dependencies {
-		implementation project(':weather-common') // 컴파일 시 velog-core project 로딩
-	}
-}
-
 project(':weather-batch') {
 	bootJar { enabled = true }
 	jar { enabled = false }
@@ -146,3 +152,15 @@ project(':weather-batch') {
 		implementation project(':weather-common') // 컴파일 시 velog-core project 로딩
 	}
 }
+
+/*
+task copyPrivate(type: Copy) {
+	copy {
+		from './weather-common/WeatherWhisperer_private/profiles'
+		include "*.yml"
+		into '/weather-api/src/main/resources'
+	}
+}
+
+*/
+

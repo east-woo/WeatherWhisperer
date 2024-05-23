@@ -1,7 +1,8 @@
 package com.eastwoo.api.telegram.controller;
 
-import com.eastwoo.WeatherWhisperer.api.telegram.entity.TelegramBotInfo;
-import com.eastwoo.WeatherWhisperer.api.telegram.service.TelegramBotInfoService;
+
+import com.eastwoo.api.telegram.entity.TelegramBotInfo;
+import com.eastwoo.api.telegram.service.TelegramBotInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,7 @@ public class TelegramController  {
 
         return botInfoService.saveTelegramBotInfo(botInfo);
     }
+
     @GetMapping("/bot-info")
     public List<TelegramBotInfo> getBotInfo() {
         System.out.println(botInfoService.getTelegramBotInfo());
