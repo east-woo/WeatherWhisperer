@@ -56,7 +56,7 @@ public class SshTunnelingInitializer {
         Integer forwardedPort = null;
 
         String projectDir = System.getProperty("user.dir");
-        String targetDirName = "WeatherWhisperer_private"; // 찾고자 하는 폴더 이름
+        String targetDirName = "../WeatherWhisperer_private"; // 찾고자 하는 폴더 이름
         String fileName = privateKey;
         String absoluteFilePath = null;
         List<String> filePaths = new ArrayList<>();
